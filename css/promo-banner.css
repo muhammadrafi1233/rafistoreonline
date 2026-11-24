@@ -1,0 +1,196 @@
+/* ==========================================================================
+   PROMO BANNER — slider kartu besar membulat (data ada di js/promo-banner.js)
+   Teks promo di kiri, foto di kanan.
+   ========================================================================== */
+
+.promo { position: relative; margin: 4px 0 22px; }
+.promo[hidden] { display: none; }
+
+.promo-track {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  border-radius: var(--r-lg);
+}
+.promo-track::-webkit-scrollbar { display: none; }
+.promo-track { cursor: grab; }
+.promo-track.dragging { cursor: grabbing; user-select: none; }
+.promo-track img { -webkit-user-drag: none; user-select: none; }
+
+.promo-slide {
+  --promo-bg: var(--surface-3);
+  position: relative;
+  flex: 0 0 100%;
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--r-lg);
+  background: radial-gradient(circle at 0 100%, var(--promo-tint), transparent 60%), #24150a; /* HP: warna dasar = warna foto */
+  color: #fff;
+  scroll-snap-align: start;
+}
+/* latar mengikuti warna foto (cokelat gelap keemasan) agar menyatu; tiap slide beda semburat */
+.promo-slide[data-theme="green"] {
+  --promo-bg: linear-gradient(110deg, #10281a 0%, #2a2a10 38%, #2b1b08 62%, #24150600 100%), #24150a;
+  --promo-glow: rgba(255, 190, 50, 0.30);
+  --promo-tint: rgba(48, 160, 84, 0.34);
+}
+.promo-slide[data-theme="yellow"] {
+  --promo-bg: linear-gradient(110deg, #33200a 0%, #3a2509 40%, #2b1b08 66%, #24150600 100%), #24150a;
+  --promo-glow: rgba(255, 190, 50, 0.34);
+  --promo-tint: rgba(255, 170, 30, 0.26);
+}
+.promo-slide[data-theme="cream"] {
+  --promo-bg: linear-gradient(110deg, #0f2a29 0%, #2a2a12 40%, #2b1b08 64%, #24150600 100%), #24150a;
+  --promo-glow: rgba(255, 190, 50, 0.30);
+  --promo-tint: rgba(40, 170, 150, 0.30);
+}
+/* cahaya lembut + pola titik + lingkaran dekoratif di latar */
+.promo-slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 8% 0%, var(--promo-tint), transparent 46%),
+    radial-gradient(circle at 62% 110%, var(--promo-glow), transparent 48%),
+    radial-gradient(rgba(255, 255, 255, 0.12) 1.2px, transparent 1.6px) 0 0 / 18px 18px;
+  -webkit-mask-image: linear-gradient(to right, #000 0, #000 55%, transparent 90%);
+  mask-image: linear-gradient(to right, #000 0, #000 55%, transparent 90%);
+}
+.promo-slide::after {
+  content: '';
+  position: absolute;
+  left: -46px;
+  bottom: -64px;
+  width: 190px;
+  height: 190px;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 0 0 22px rgba(255, 255, 255, 0.04), 0 0 0 46px rgba(255, 255, 255, 0.025);
+}
+
+.promo-copy {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px 12px;
+  margin-top: -30px; /* naik menimpa tepi bawah foto yang memudar */
+  padding: 0 18px 18px;
+}
+.promo-copy .promo-tag, .promo-copy .promo-title { grid-column: 1 / -1; }
+.promo-copy .promo-tag { justify-self: start; }
+.promo-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 11px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: #ffe08a;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+.promo-title {
+  margin: 0;
+  font-size: clamp(21px, 6vw, 27px);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.4px;
+  color: #fff;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.28);
+}
+.promo-prices { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; }
+.promo-old { font-size: 13px; font-weight: 500; color: rgba(255, 255, 255, 0.62); text-decoration: line-through; text-decoration-thickness: 1.5px; }
+.promo-new { font-size: 20px; font-weight: 800; color: #ffd43b; text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3); }
+.promo-btn {
+  min-height: var(--tap);
+  margin-top: 0;
+  padding: 0 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: linear-gradient(180deg, #ffd84d, #f5b50f);
+  color: #2b1d00;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.promo-btn:hover { filter: brightness(1.06); transform: translateY(-1px); }
+.promo-btn:active { transform: scale(0.97); }
+
+.promo-media { position: relative; z-index: 1; order: -1; aspect-ratio: 2 / 1; }
+.promo-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ikut teknik versi PC: foto penuh satu frame, bukan contain */
+  -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+  -webkit-mask-composite: source-over;
+  mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+  mask-composite: add;
+}
+
+/* titik penunjuk */
+.promo-dots { display: flex; justify-content: center; gap: 6px; margin-top: 12px; }
+.promo-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: var(--line-strong);
+  cursor: pointer;
+  transition: width 0.25s var(--ease), background 0.25s ease;
+}
+.promo-dot::after { content: ''; position: absolute; inset: -18px -6px; } /* area sentuh ≥ 44px */
+.promo-dot.active { width: 24px; background: var(--primary); }
+
+
+@media (min-width: 769px) {
+  .promo { margin-bottom: 28px; }
+  .promo-slide { min-height: 280px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); background: var(--promo-bg); }
+  .promo-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 12px; margin-top: 0; padding: 32px 12px 32px 44px; }
+  .promo-copy .promo-prices { align-self: flex-start; }
+  .promo-copy .promo-btn { margin-top: 4px; }
+  .promo-tag { font-size: 11.5px; }
+  .promo-title { font-size: clamp(30px, 3.4vw, 42px); }
+  .promo-old { font-size: 15px; }
+  .promo-new { font-size: 24px; }
+  .promo-btn { padding: 0 30px; font-size: 15px; }
+  .promo-media { order: 0; aspect-ratio: auto; min-height: 100%; }
+  .promo-media img {
+    object-fit: cover;
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 24%);
+    -webkit-mask-composite: source-over;
+    mask-image: linear-gradient(to right, transparent 0, #000 24%);
+    mask-composite: add;
+  }
+}
+
+@media (max-width: 360px) {
+  .promo-copy { padding: 0 14px 14px; }
+  .promo-btn { padding: 0 18px; font-size: 13.5px; }
+}

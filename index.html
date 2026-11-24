@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fbf8ef" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <title>RAFI HAYDAY</title>
+
+  <!-- Meta untuk preview link (WhatsApp, Instagram, dll) -->
+  <meta property="og:title" content="Rafi Hayday Store" />
+  <meta property="og:description" content="Jual coins, bahan bangunan, dan akun game Hay Day. Order lewat WhatsApp!" />
+  <meta property="og:image" content="https://rafihayday.netlify.app/thumbnail.jpg" />
+  <meta property="og:url" content="https://rafihayday.netlify.app/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Rafi Hayday Store" />
+  <meta name="twitter:description" content="Jual coins, bahan bangunan, dan akun game Hay Day. Order lewat WhatsApp!" />
+  <meta name="twitter:image" content="https://rafihayday.netlify.app/thumbnail.jpg" />
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" />
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/header.css" />
+  <link rel="stylesheet" href="css/promo-banner.css" />
+  <link rel="stylesheet" href="css/catalog.css" />
+  <link rel="stylesheet" href="css/order-cart.css" />
+  <link rel="stylesheet" href="css/tutorial.css" />
+  <link rel="stylesheet" href="css/testimonials.css" />
+  <link rel="stylesheet" href="css/worldwide.css" />
+  <link rel="stylesheet" href="css/kalkulator.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+
+<body>
+  <header class="site-header" id="siteHeader">
+    <div class="site-header-inner">
+      <div class="site-header-row">
+        <!-- Tombol menu bulat (kiri) — hanya tampil di HP -->
+        <button type="button" class="round-btn header-menu-btn" id="headerMenuBtn" aria-label="Buka menu"
+          data-i18n-aria="header.menuAria" aria-haspopup="true" aria-expanded="false" aria-controls="headerPanel">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <!-- Logo RAFI HAYDAY (tetap) -->
+        <a href="#" class="site-logo" data-view="katalog" aria-label="RAFI HAYDAY - Beranda"
+          onclick="switchView('katalog', document.getElementById('navKatalogLink')); return false;">
+          <span class="site-logo-mark" aria-hidden="true">R</span>
+          <span class="site-logo-text">RAFI HAYDAY</span>
+        </a>
+
+        <!-- Tombol search bulat (kanan) — hanya tampil di HP -->
+        <button type="button" class="round-btn header-search-toggle" id="headerSearchToggle" aria-label="Cari produk"
+          data-i18n-aria="header.searchAria" aria-expanded="false" aria-controls="siteSearch">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+            <path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <div class="site-search" id="siteSearch">
+          <input type="text" id="siteSearchInput" class="site-search-input" placeholder="Search products..."
+            data-i18n-placeholder="header.searchPlaceholder" autocomplete="off" aria-label="Search products"
+            role="combobox" aria-expanded="false" aria-controls="siteSearchResults" />
+          <button type="button" class="site-search-btn" id="siteSearchBtn" aria-label="Cari produk"
+            onclick="runHeaderSearch()">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+              <path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <div class="site-search-results" id="siteSearchResults" role="listbox" aria-label="Hasil pencarian"></div>
+        </div>
+
+        <!-- Panel menu: di HP bergeser dari kiri, di desktop menyatu dengan header -->
+        <div class="site-header-panel" id="headerPanel">
+          <div class="panel-head">
+            <span class="panel-title" data-i18n="header.menuTitle">Menu</span>
+            <button type="button" class="round-btn panel-close" id="headerPanelClose" aria-label="Tutup menu"
+              data-i18n-aria="header.closeMenuAria">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+
+          <nav class="header-nav" aria-label="Navigasi utama">
+            <a href="#" class="current" id="navKatalogLink" data-view="katalog"
+              onclick="switchView('katalog', this); return false;">🛒
+              <span data-i18n="nav.katalog">Katalog</span></a>
+            <a href="#" data-view="tutorial" onclick="switchView('tutorial', this); return false;">📋 <span data-i18n="nav.tutorial">Tutorial Beli</span></a>
+            <a href="#" data-view="testimoni"
+              onclick="switchView('testimoni', this); setTimeout(runTransactionCounter, 300); return false;">⭐ <span data-i18n="nav.testimoni">Testimoni
+              Pembeli</span></a>
+            <a href="#kalkulator" data-view="kalkulator" onclick="switchView('kalkulator', this); return false;">🧮 <span data-i18n="nav.kalkulator">Kalkulator</span></a>
+          </nav>
+
+          <div class="site-header-actions">
+            <div class="lang-switcher" id="langSwitcher">
+              <button type="button" class="lang-switcher-btn" id="langSwitcherBtn" aria-haspopup="true"
+                aria-expanded="false" aria-label="Ganti bahasa">
+                <span id="langSwitcherFlag">🇮🇩</span>
+                <span id="langSwitcherCode">ID</span>
+                <span class="lang-caret">▾</span>
+              </button>
+              <div class="lang-switcher-menu" id="langSwitcherMenu">
+                <button type="button" class="lang-option" data-lang="id">🇮🇩 <span>Bahasa Indonesia</span></button>
+                <button type="button" class="lang-option" data-lang="en">🇬🇧 <span>English</span></button>
+              </div>
+            </div>
+
+            <div class="header-action-wrap">
+              <button type="button" class="icon-btn" id="wishlistBtn" aria-label="Wishlist" aria-haspopup="true"
+                aria-expanded="false" onclick="toggleWishlistPanel()">
+                <span aria-hidden="true">♥</span>
+                <span class="btn-label" data-i18n="header.wishlistLabel">Wishlist</span>
+                <span class="icon-badge" id="wishlistCountBadge" style="display:none;">0</span>
+              </button>
+              <div class="wishlist-panel" id="wishlistPanel" role="dialog" aria-label="Wishlist">
+                <div class="wishlist-panel-title" data-i18n="header.wishlistTitle">Wishlist Kamu</div>
+                <div id="wishlistPanelBody" class="wishlist-panel-body"></div>
+              </div>
+            </div>
+
+            <button type="button" class="icon-btn icon-btn-dark" id="headerCartBtn" aria-label="Buka keranjang belanja"
+              onclick="openCartModal()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 8h12l-1 12.5a1.5 1.5 0 0 1-1.5 1.5H8.5A1.5 1.5 0 0 1 7 20.5L6 8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M9 8V6a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span class="icon-badge" id="headerCartCountBadge">0</span>
+            </button>
+
+            <div class="header-action-wrap">
+              <button type="button" class="site-profile" id="siteProfileBtn" aria-label="Admin">
+                <span class="site-profile-avatar" aria-hidden="true">🔐</span>
+                <span class="btn-label" data-i18n="header.adminLabel">Admin</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header-scrim" id="headerScrim"></div>
+  </header>
+
+  <div class="container view active" id="view-katalog">
+
+    <h2 class="section-title sr-only" data-i18n="catalog.title"> Katalog</h2>
+    <p class="section-desc sr-only" data-i18n="catalog.desc">Klik salah satu menu, lalu pilih katalog yang mau kamu order.</p>
+
+    <!-- Banner promo (slider). Datanya ada di js/promo-banner.js -->
+    <section class="promo" id="promoBanner" aria-roledescription="carousel" aria-label="Promo" data-i18n-aria="promo.aria" hidden>
+      <div class="promo-track" id="promoTrack"></div>
+      <div class="promo-dots" id="promoDots"></div>
+    </section>
+
+    <div class="menu-grid">
+      <div class="menu-card active" role="button" tabindex="0" onclick="showCatalog('item', this)">
+        <div class="menu-icon">🧰</div>
+        <h3 data-i18n="menu.item.title">Item Upgrade</h3>
+        <p data-i18n="menu.item.desc">Item upgrade barn, silo, dan perluasan farm.</p>
+      </div>
+
+      <div class="menu-card" role="button" tabindex="0" onclick="showCatalog('bahanalat', this)">
+        <div class="menu-icon">🌾</div>
+        <h3 data-i18n="menu.bahanalat.title">Bahan & Alat</h3>
+        <p data-i18n="menu.bahanalat.desc">Bahan dasar, hasil panen, dan alat kebutuhan farm.</p>
+      </div>
+
+      <div class="menu-card" role="button" tabindex="0" onclick="showCatalog('voucher', this)">
+        <div class="menu-icon">🎟️</div>
+        <h3 data-i18n="menu.voucher.title">Voucher</h3>
+        <p data-i18n="menu.voucher.desc">Paket voucher Hayday untuk kebutuhan dekorasi dan item khusus.</p>
+      </div>
+
+      <div class="menu-card" role="button" tabindex="0" onclick="showCatalog('coin', this)">
+        <div class="menu-icon"><svg class="rh-coin" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="21" fill="#F7B733" stroke="#C98A00" stroke-width="2.5"/><circle cx="24" cy="24" r="15" fill="#FFD978" stroke="#E0A010" stroke-width="2"/><path d="M24 15l2.47 6.1 6.56.46-5.04 4.24 1.59 6.39L24 28.7l-5.58 3.49 1.59-6.39-5.04-4.24 6.56-.46z" fill="#B77900"/></svg></div>
+        <h3 data-i18n="menu.coin.title">Coin Hayday</h3>
+        <p data-i18n="menu.coin.desc">Katalog coin Hayday dengan pilihan paket berbeda.</p>
+      </div>
+
+      <div class="menu-card" role="button" tabindex="0" onclick="showCatalog('akun', this)">
+        <div class="menu-icon">👤</div>
+        <h3 data-i18n="menu.akun.title">Akun Hayday</h3>
+        <p data-i18n="menu.akun.desc">Katalog akun Hayday yang tersedia untuk dibeli.</p>
+      </div>
+    </div>
+
+    <button type="button" class="mobile-back-btn" id="mobileBackBtn" onclick="backToMenuMobile()" data-i18n="nav.backToMenu">← Kembali ke
+      Menu</button>
+
+    <div id="item" class="catalog-section active">
+      <div class="section-head">
+        <h2 class="section-title" data-i18n="section.item.title">Item Upgrade</h2>
+        <a href="#katalog-all" class="see-all-link" onclick="showAllCatalog(); return false;" data-i18n="catalog.seeAll">Lihat semua</a>
+      </div>
+      <div class="products">
+
+        <div class="card" id="barnProductCard" data-product-slug="barn-item">
+          <div class="card-img-wrap" id="barnCardImageWrap" onclick="openImageLightbox('https://i.imgur.com/uhqbIRO.png', 'Barn Item')">
+            <img id="barnCardImage" src="https://i.imgur.com/uhqbIRO.png" alt="Barn Item">
+            <div class="card-img-zoom-hint"><span>🔍</span></div>
+            <span class="card-label" hidden></span>
+            <div class="card-overlay">
+              <p class="price" id="barnCardPrice">Rp2.500</p>
+              <h2 id="barnCardName">Barn Item</h2>
+            </div>
+          </div>
+          <p class="desc" id="barnCardDesc">Item untuk kebutuhan upgrade barn Hayday. Harga terbaik untuk pembelian 30+ set.</p>
+          <span id="barnCardStock" data-db-stock="1" class="stock-badge in-stock">Stok: memuat...</span>
+          <button type="button" class="btn" id="barnCardButton" onclick="openBulkItemForm('Barn Item')" data-i18n="catalog.addToCartBtn">Tambah ke Keranjang</button>
+        </div>
+
+        <div class="card" data-product-slug="silo-item">
+          <div class="card-img-wrap" onclick="openImageLightbox('https://i.imgur.com/8CT41mi.png', 'Silo Item')">
+            <img src="https://i.imgur.com/8CT41mi.png" alt="Silo Item">
+            <div class="card-img-zoom-hint"><span>🔍</span></div>
+            <span class="card-label" hidden></span>
+            <div class="card-overlay">
+              <p class="price">Rp3.000</p>
+              <h2>Silo Item</h2>
+            </div>
+          </div>
+          <p class="desc">Item untuk kebutuhan upgrade silo Hayday. Harga terbaik untuk pembelian 30+ set.</p>
+          <button type="button" class="btn" onclick="openBulkItemForm('Silo Item')" data-i18n="catalog.addToCartBtn">Tambah ke Keranjang</button>
+        </div>
+
+        <div class="card" data-product-slug="land-expansion-item">
+          <div class="card-img-wrap"
+            onclick="openImageLightbox('https://i.imgur.com/s34drq6.png', 'Land Expansion Item')">
+            <img src="https://i.imgur.com/s34drq6.png" alt="Land Expansion Item">
+            <div class="card-img-zoom-hint"><span>🔍</span></div>
+            <span class="card-label" hidden></span>
+            <div class="card-overlay">
+              <p class="price">Rp3.500</p>
+              <h2>Land Expansion Item</h2>
+            </div>
+          </div>
+          <p class="desc">Item untuk perluasan lahan farm Hayday. Harga terbaik untuk pembelian 30+ set.</p>
+          <button type="button" class="btn" onclick="openBulkItemForm('Land Expansion Item')" data-i18n="catalog.addToCartBtn">Tambah ke Keranjang</button>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="bahanalat" class="catalog-section">
+      <div class="section-head">
+        <h2 class="section-title" data-i18n="section.bahanalat.title">Bahan & Alat</h2>
+        <a href="#katalog-all" class="see-all-link" onclick="showAllCatalog(); return false;" data-i18n="catalog.seeAll">Lihat semua</a>
+      </div>
+      <p class="section-desc" data-i18n="section.bahanalat.desc">Minimal pembelian Bahan & Alat mulai dari 50 pcs per item.</p>
+      <div class="products">
+
+        <div class="card" data-product-slug="bahan-susu">
+          <div class="card-img-wrap" onclick="openImageLightbox('img/bahan-susu.jpg', 'Bahan Susu')">
+            <img src="img/bahan-susu.jpg" alt="Bahan Susu">
+            <div class="card-img-zoom-hint"><span>🔍</span></div>
+            <span class="card-label" hidden></span>
+            <div class="card-overlay">
+              <p class="price">Rp2.000</p>
+              <h2>Bahan Susu</h2>
+            </div>
+          </div>
+          <p class="desc">Pilih per item: Krim, Mentega, Keju, Susu Kambing. Minimal pembelian 50 pcs per item.</p>
+          <button type="button" class="btn" onclick="openBahanMultiForm('Bahan Susu')" data-i18n="catalog.addToCartBtn">Tambah ke Keranjang</button>
+        </div>
+
+        <div class="card" data-product-slug="bahan-gula">
+          <div class="card-img-wrap" onclick="openImageLightbox('img/bahan-gula.jpg', 'Bahan Gula')">
+            <img src="img/bahan-gula.jpg" alt="Bahan Gula">
+            <div class="card-img-zoom-hint"><span>🔍</span></div>
+            <span class="card-label" hidden></span>
+            <div class="card-overlay">
+              <p class="price">Rp2.000</p>
+              <h2>Bahan Gula</h2>
+            </div>
+          </div>
+          <p class="desc">Pilih per item: Gula Cokelat, Gula Putih, Syrup. Minimal pembelian 50 pcs per item.</p>
+          <button type="button" class="btn" onclick="openBahanMultiForm('Bahan Gula')" data-i18n="catalog.addToCartBtn">Tambah ke Keranjang</button>
+        </div>
+
+        <div class="card" data-product-slug="bahan-laut">
+          <div class="card-img-wrap" onclick="openImageLightbox('img/bahan-laut.jpg', 'Bahan Laut')">
+            <img src="img/bahan-laut.jpg" alt="Bahan Laut">
+            <div class="card-img-zoom-hint"><span>🔍</span></div>
+            <span class="card-label" hidden></span>
+            <div class="card-overlay">
+              <p class="price">Rp2.500</p>
+              <h2>Bahan Laut</h2>
+            </div>
+          </div>
+          <p class="desc">Pilih per item: Ikan, Lobster, Bulu Bebek. Minimal pembelian 50 pcs per item.</p>
+          <button type="button" class="btn" onclick="openBahanMultiForm('Bahan Laut')" data-i18n="catalog.addToCartBtn">Tambah ke Keranjang</button>
+        </div>
+
+        <div class="card" data-product-slug="bahan-madu">
+          <div class="card-img-wrap" onclick="openImageLightbox('img/bahan-madu.jpg', 'Bahan Madu')">
+            <img src="img/bahan-madu.jpg" alt="Bahan Madu">
+            <div class="card-img-zoom-hint"><span>🔍</span></div>
+            <span class="card-label" hidden></span>
+            <div class="card-overlay">
+              <p class="price">Rp2.500</p>
+              <h2>Bahan Madu</h2>
+            </div>
+          </div>
+          <p class="desc">Pilih per item: Sarang Madu, Madu, Lilin Lebah. Minimal pembelian 50 pcs per item.</p>
+          <button type="button" class="btn" onclick="openBahanMultiForm('Bahan Madu')" data-i18n="catalog.addToCartBtn">Tambah ke Keranjang</button>
+        </div>
+
+        <div class="card" data-product-slug="bahan-tambang">
+          <div class="card-img-wrap" onclick="openImageLightbox('img/bahan-tambang.jpg', 'Bahan Tambang')">
+            <img src="img/bahan-tambang.jpg" alt="Bahan Tambang">
+            <div class="card-img-zoom-hint"><span>🔍</span></div>
+            <span class="card-label" hidden></span>
+            <div class="card-overlay">
+              <p class="price">Rp2.500</p>
+              <h2>Bahan Tambang</h2>
+            </div>
+          </div>
+          <p class="desc">Pilih per item: Silver, Gold, Platinum, Besi, Baja. Minimal pembelian 50 pcs per item, tidak bisa dicampur.</p>
+          <button type="button" class="btn" onclick="openBahanMultiForm('Bahan Tambang')" data-i18n="catalog.addToCartBtn">Tambah ke Keranjang</button>
+        </div>
+
+        <div class="card" data-product-slug="bahan-alat">
+          <div class="card-img-wrap" onclick="openImageLightbox('img/bahan-alat.jpg', 'Bahan Alat')">
+            <img src="img/bahan-alat.jpg" alt="Bahan Alat">
+            <div class="card-img-zoom-hint"><span>🔍</span></div>
+            <span class="card-label" hidden></span>
+            <div class="card-overlay">
+              <p class="price">Rp1.000</p>
+              <h2>Bahan Alat</h2>
+            </div>
+          </div>
+          <p class="desc">Pilih per item: Gergaji, Kapak, TNT, Dinamit, Sekop (Rp1.000), Pickaxe (Rp3.000). Minimal pembelian 50 pcs per item.</p>
+          <button type="button" class="btn" onclick="openBahanMultiForm('Bahan Alat')" data-i18n="catalog.addToCartBtn">Tambah ke Keranjang</button>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="voucher" class="catalog-section">
+      <div class="section-head">
+        <h2 class="section-title" data-i18n="section.voucher.title">Voucher Hayday</h2>
+        <a href="#katalog-all" class="see-all-link" onclick="showAllCatalog(); return false;" data-i18n="catalog.seeAll">Lihat semua</a>
+      </div>
+      <p class="section-desc" data-i18n="section.voucher.desc">Satu katalog voucher Hayday untuk kebutuhan dekorasi dan item khusus.</p>
+      <div class="products">
+
+        <div class="card" data-product-slug="voucher-1000-pcs-hayday">
+          <div class="card-img-wrap" onclick="openImageLightbox('img/voucher-full.jpg', 'Voucher Hayday')">
+            <img src="img/voucher.jpg" alt="Voucher Hayday">
+            <div class="card-img-zoom-hint"><span>🔍</span></div>
+            <span class="card-label" hidden></span>
+            <div class="card-overlay">
+              <p class="price">Rp100.000</p>
+              <h2>Voucher 1000 Pcs Hayday</h2>
+            </div>
+          </div>
+          <p class="desc">Cocok untuk kebutuhan hewan dan dekorasi Hayday. Praktis dalam satu paket, tinggal order dan langsung diproses..</p>
+          <button type="button" class="btn" onclick="openOrderForm('Voucher Hayday')" data-i18n="catalog.addToCartBtn">Tambah ke Keranjang</button>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="coin" class="catalog-section">
+      <div class="section-head">
+        <h2 class="section-title" data-i18n="section.coin.title">Coin Hayday</h2>
+        <a href="#katalog-all" class="see-all-link" onclick="showAllCatalog(); return false;" data-i18n="catalog.seeAll">Lihat semua</a>
+      </div>
+      <p class="section-desc" data-i18n="section.coin.desc">Pilih jumlah coin sesuai kebutuhan (kelipatan sampai 10 juta). Ada juga opsi jasa kalau mau dibantu proses.</p>
+      <div class="products">
+
+        <div class="card" data-product-slug="coin-hayday-level-40-plus">
+          <div class="card-img-wrap" onclick="openImageLightbox('https://i.imgur.com/gmktNu6.png', 'Coin Hayday Level 40+')">
+            <img src="https://i.imgur.com/gmktNu6.png" alt="Coin Hayday Level 40+">
+            <div class="card-img-zoom-hint"><span>🔍</span></div>
+            <span class="card-label" hidden></span>
+            <div class="card-overlay">
+              <p class="price">Rp9.000 / 1 juta</p>
+              <h2>Coin Hayday Level 40+</h2>
+            </div>
+          </div>
+          <p class="desc">Untuk player level 40 ke atas. Kelipatan 1 juta, bisa sampai 10 juta coin.</p>
+          <button type="button" class="btn" onclick="openCoinForm('Coin Hayday Level 40+')" data-i18n="catalog.addToCartBtn">Tambah ke Keranjang</button>
+        </div>
+
+        <div class="card" data-product-slug="coin-hayday-level-25-39">
+          <div class="card-img-wrap" onclick="openImageLightbox('https://i.imgur.com/gmktNu6.png', 'Coin Hayday Level 25-39')">
+            <img src="https://i.imgur.com/gmktNu6.png" alt="Coin Hayday Level 25-39">
+            <div class="card-img-zoom-hint"><span>🔍</span></div>
+            <span class="card-label" hidden></span>
+            <div class="card-overlay">
+              <p class="price">Rp10.000 / 500 ribu</p>
+              <h2>Coin Hayday Level 25-39</h2>
+            </div>
+          </div>
+          <p class="desc">Untuk player level 25-39. Kelipatan 500 ribu, bisa sampai 10 juta coin.</p>
+          <button type="button" class="btn" onclick="openCoinForm('Coin Hayday Level 25-39')" data-i18n="catalog.addToCartBtn">Tambah ke Keranjang</button>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="akun" class="catalog-section">
+      <div class="section-head">
+        <h2 class="section-title" data-i18n="section.akun.title">Akun Hayday</h2>
+        <a href="#katalog-all" class="see-all-link" onclick="showAllCatalog(); return false;" data-i18n="catalog.seeAll">Lihat semua</a>
+      </div>
+      <div class="products">
+
+        <div class="card" data-product-slug="akun-player-hayday">
+          <div class="card-img-wrap"
+            onclick="openImageLightbox('https://i.imgur.com/vxtGaWW.png', 'Akun Player Hayday')">
+            <img src="https://i.imgur.com/vxtGaWW.png" alt="Akun Player Hayday">
+            <div class="card-img-zoom-hint"><span>🔍</span></div>
+            <span class="card-label" hidden></span>
+            <div class="card-overlay">
+              <p class="price">Mulai Rp50.000</p>
+              <h2>Akun Player Hayday</h2>
+            </div>
+          </div>
+          <p class="desc">Akun player Hayday, bisa disesuaikan dengan budget dan spek yang kamu mau.</p>
+          <button type="button" class="btn" onclick="openAkunCustomForm('Akun Player Hayday')" data-i18n="akun.requestBtn">Request Sesuai Budget</button>
+        </div>
+
+        <div class="card" data-product-slug="akun-gudang-hayday">
+          <div class="card-img-wrap"
+            onclick="openImageLightbox('https://i.imgur.com/vxtGaWW.png', 'Akun Gudang Hayday')">
+            <img src="https://i.imgur.com/vxtGaWW.png" alt="Akun Gudang Hayday">
+            <div class="card-img-zoom-hint"><span>🔍</span></div>
+            <span class="card-label" hidden></span>
+            <div class="card-overlay">
+              <p class="price">Mulai Rp50.000</p>
+              <h2>Akun Gudang Hayday</h2>
+            </div>
+          </div>
+          <p class="desc">Akun gudang Hayday, bisa disesuaikan dengan budget dan spek yang kamu mau.</p>
+          <button type="button" class="btn" onclick="openAkunCustomForm('Akun Gudang Hayday')" data-i18n="akun.requestBtn">Request Sesuai Budget</button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="testi-cta">
+      <p data-i18n="testi.ctaText">Masih ragu? Lihat langsung pengalaman pembeli lain 👇</p>
+      <a href="#"
+        onclick="switchView('testimoni', document.querySelector('.header-nav a[data-view=testimoni]')); setTimeout(runTransactionCounter, 300); return false;" data-i18n="testi.ctaLink">⭐
+        Lihat Testimoni Pembeli</a>
+    </div>
+
+    <div class="note">
+      <div class="social-links">
+        <a class="social-link" href="https://wa.me/6281912164977?text=Halo%20RAFI%20HAYDAY,%20saya%20mau%20order"
+          target="_blank">
+          <span class="social-icon whatsapp">☎</span>
+          WA : 081912164977
+        </a>
+        <a class="social-link" href="https://chat.whatsapp.com/Ippqj2wFm5NHkY9nkrQkcg"
+          target="_blank">
+          <span class="social-icon whatsapp">👥</span>
+          Grup WA Rafi Hayday
+        </a>
+        <a class="social-link" href="https://www.tiktok.com/@rafihaydayy?is_from_webapp=1&sender_device=pc"
+          target="_blank">
+          <span class="social-icon tiktok">♪</span>
+          TikTok: Rafi Hayday
+        </a>
+        <a class="social-link" href="https://www.instagram.com/rafihayday?igsh=MWIyNDdpd2tuanJ5Yg%3D%3D&utm_source=qr"
+          target="_blank">
+          <span class="social-icon instagram">◎</span>
+          Instagram: Rafi Hayday
+        </a>
+        <a class="social-link" href="https://x.com/iniwoirafi?s=11" target="_blank">
+          <span class="social-icon x">X</span>
+          X: Rafi Hayday
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== VIEW: TUTORIAL BELI ====== -->
+  <div class="container view" id="view-kalkulator">
+    <div class="calc-wrap">
+      <h2 class="calc-title" data-i18n="calc.title">Kalkulator Barn &amp; Silo</h2>
+      <p class="calc-sub" data-i18n="calc.sub">Hitung material upgrade dari kapasitas sekarang ke target.</p>
+
+      <div class="calc-tabs" role="tablist">
+        <button type="button" class="calc-tab" role="tab" id="calcTabBarn" aria-selected="true">Barn</button>
+        <button type="button" class="calc-tab" role="tab" id="calcTabSilo" aria-selected="false">Silo</button>
+      </div>
+
+      <div class="calc-card">
+        <img id="calcHero" class="calc-hero" alt="Barn">
+        <div class="calc-row">
+          <div><label for="calcCur" data-i18n="calc.cur">Kapasitas sekarang</label><input id="calcCur" type="number" inputmode="numeric" value="50"></div>
+          <div><label for="calcTgt" data-i18n="calc.tgt">Kapasitas target</label><input id="calcTgt" type="number" inputmode="numeric" value="500"></div>
+        </div>
+        <div class="calc-hint" data-i18n="calc.valid">Kapasitas valid: 50–1000 naik per 25, lalu di atas 1000 naik per 50.</div>
+        <div class="calc-err" id="calcErr"></div>
+      </div>
+
+      <div class="calc-card" id="calcResult" hidden>
+        <div class="calc-sum"><span>Level sekarang → target</span><b id="calcLv"></b></div>
+        <div class="calc-sum"><span>Jumlah upgrade</span><b id="calcUps"></b></div>
+        <table>
+          <thead><tr><th>Material</th><th class="calc-n">Butuh</th><th class="calc-n">Punya</th><th class="calc-n">Selisih</th></tr></thead>
+          <tbody id="calcMats"></tbody>
+        </table>
+        <div class="calc-total" id="calcTotal"></div>
+        <div class="calc-days" id="calcDays"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container view" id="view-tutorial">
+    <h2 class="section-title" data-i18n="tutorial.title">📋 Tutorial Cara Beli</h2>
+    <p class="section-desc" data-i18n="tutorial.desc">Pilih tipe tutorial di bawah untuk melihat panduan lengkapnya.</p>
+
+    <div class="tut-picker-grid">
+
+      <!-- BUBBLE 1: TUTORIAL ALAT UPGRADE -->
+      <div class="tut-picker-bubble tut-bubble-upgrade" onclick="openTutModal('upgrade')" role="button" tabindex="0"
+        onkeydown="if(event.key==='Enter'||event.key===' ')openTutModal('upgrade')">
+        <div class="tut-picker-glow"></div>
+        <div class="tut-picker-particles">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <div class="tut-picker-icon">🧰</div>
+        <h3 class="tut-picker-title"><span data-i18n="tutorial.upgradeLine1">Tutorial</span><br><span data-i18n="tutorial.upgradeLine2">Alat Upgrade</span></h3>
+        <p class="tut-picker-sub" data-i18n="tutorial.upgradeSub">Barn · Silo · Land Item</p>
+        <div class="tut-picker-badge" data-i18n="tutorial.pressToView">Tekan untuk lihat ▶</div>
+      </div>
+
+      <!-- BUBBLE 2: TUTORIAL KOIN -->
+      <div class="tut-picker-bubble tut-bubble-coin" onclick="openTutModal('coin')" role="button" tabindex="0"
+        onkeydown="if(event.key==='Enter'||event.key===' ')openTutModal('coin')">
+        <div class="tut-picker-glow"></div>
+        <div class="tut-picker-particles">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <div class="tut-picker-icon"><svg class="rh-coin" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="21" fill="#F7B733" stroke="#C98A00" stroke-width="2.5"/><circle cx="24" cy="24" r="15" fill="#FFD978" stroke="#E0A010" stroke-width="2"/><path d="M24 15l2.47 6.1 6.56.46-5.04 4.24 1.59 6.39L24 28.7l-5.58 3.49 1.59-6.39-5.04-4.24 6.56-.46z" fill="#B77900"/></svg></div>
+        <h3 class="tut-picker-title"><span data-i18n="tutorial.coinLine1">Tutorial</span><br><span data-i18n="tutorial.coinLine2">Koin</span></h3>
+        <p class="tut-picker-sub" data-i18n="tutorial.coinSub">Coin Hayday Level 25+</p>
+        <div class="tut-picker-badge" data-i18n="tutorial.pressToView">Tekan untuk lihat ▶</div>
+      </div>
+
+    </div>
+
+    <!-- CTA bawah -->
+    <div class="testi-bottom-cta" style="margin-top:28px;">
+      <h3 data-i18n="tutorial.ctaTitle">Sudah paham cara ordernya?</h3>
+      <p data-i18n="tutorial.ctaDesc">Langsung pilih produk dan checkout sekarang — admin siap melayani!</p>
+      <div class="cta-row">
+        <a class="cta-btn primary" href="https://wa.me/6281912164977?text=Halo%20RAFI%20HAYDAY,%20saya%20mau%20order"
+          target="_blank" data-i18n="tutorial.ctaOrderBtn">☎ Order via WhatsApp</a>
+        <a class="cta-btn secondary" href="#"
+          onclick="switchView('katalog', document.querySelector('.header-nav a[data-view=katalog]')); return false;" data-i18n="tutorial.ctaCatalogBtn">🛒
+          Ke Katalog</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== MODAL TUTORIAL ====== -->
+  <div class="tut-modal-overlay" id="tutModalOverlay" onclick="closeTutModal(event)">
+    <div class="tut-modal-box" id="tutModalBox">
+
+      <!-- Header -->
+      <div class="tut-modal-header" id="tutModalHeader">
+        <div class="tut-modal-icon-wrap" id="tutModalIconWrap">
+          <span id="tutModalIcon"></span>
+        </div>
+        <div class="tut-modal-header-text">
+          <h3 id="tutModalTitle"></h3>
+          <p id="tutModalSubtitle"></p>
+        </div>
+        <button class="tut-modal-close" onclick="closeTutModalDirect()" data-i18n-aria="common.close" aria-label="Tutup">✕</button>
+      </div>
+
+      <!-- Body: scrollable -->
+      <div class="tut-modal-body" id="tutModalBody">
+
+        <!-- TAB SWITCH -->
+        <div class="tut-modal-tabs" id="tutModalTabs">
+          <button class="tut-tab active" id="tutTabVideo" onclick="switchTutTab('video')" data-i18n="tutorial.tabVideo">🎬 Video</button>
+          <button class="tut-tab" id="tutTabSteps" onclick="switchTutTab('steps')" data-i18n="tutorial.tabSteps">📋 Langkah</button>
+        </div>
+
+        <!-- PANEL: VIDEO -->
+        <div class="tut-panel" id="tutPanelVideo">
+          <div class="tut-modal-video-wrap" id="tutModalVideoWrap">
+            <div class="tut-modal-video-placeholder" id="tutModalVideoPlaceholder" onclick="loadModalVideo()">
+              <div class="tut-modal-play-btn">▶</div>
+              <span id="tutModalVideoLabel" data-i18n="tutorial.videoClickLabel">Klik untuk putar video tutorial</span>
+            </div>
+          </div>
+          <p class="tut-modal-video-note" id="tutModalVideoNote"></p>
+        </div>
+
+        <!-- PANEL: LANGKAH -->
+        <div class="tut-panel" id="tutPanelSteps" style="display:none;">
+          <div class="tut-modal-steps" id="tutModalSteps"></div>
+        </div>
+
+      </div>
+
+      <div class="tut-modal-footer">
+        <a class="tut-modal-wa-btn" href="https://wa.me/6281912164977?text=Halo%20RAFI%20HAYDAY,%20saya%20mau%20tanya%20cara%20order" target="_blank" data-i18n="tutorial.askAdmin">
+          ☎ Tanya Admin Langsung
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container view" id="view-testimoni">
+    <h2 class="section-title">Trusted by Farmers Worldwide</h2>
+    <p class="section-desc" data-i18n="testi.desc">Sudah banyak order dari berbagai negara untuk item, coin, dan akun Hay Day.</p>
+
+    <div class="worldwide-section">
+      <div class="live-order-toast" id="worldwideToast">🟢 New Order from 🇮🇳 India</div>
+
+      <div class="country-bubble c-india">
+        <div class="country-flag-wrap">
+          <img src="https://flagcdn.com/w40/in.png" alt="India" loading="lazy">
+        </div>
+        <div class="country-bubble-info">
+          <span class="country-bubble-name">India</span>
+        </div>
+      </div>
+      <div class="country-bubble c-vietnam">
+        <div class="country-flag-wrap">
+          <img src="https://flagcdn.com/w40/vn.png" alt="Vietnam" loading="lazy">
+        </div>
+        <div class="country-bubble-info">
+          <span class="country-bubble-name">Vietnam</span>
+        </div>
+      </div>
+      <div class="country-bubble c-malaysia">
+        <div class="country-flag-wrap">
+          <img src="https://flagcdn.com/w40/my.png" alt="Malaysia" loading="lazy">
+        </div>
+        <div class="country-bubble-info">
+          <span class="country-bubble-name">Malaysia</span>
+        </div>
+      </div>
+      <div class="country-bubble c-thailand">
+        <div class="country-flag-wrap">
+          <img src="https://flagcdn.com/w40/th.png" alt="Thailand" loading="lazy">
+        </div>
+        <div class="country-bubble-info">
+          <span class="country-bubble-name">Thailand</span>
+        </div>
+      </div>
+      <div class="country-bubble c-singapore">
+        <div class="country-flag-wrap">
+          <img src="https://flagcdn.com/w40/sg.png" alt="Singapore" loading="lazy">
+        </div>
+        <div class="country-bubble-info">
+          <span class="country-bubble-name">Singapore</span>
+        </div>
+      </div>
+      <div class="country-bubble c-cambodia">
+        <div class="country-flag-wrap">
+          <img src="https://flagcdn.com/w40/kh.png" alt="Cambodia" loading="lazy">
+        </div>
+        <div class="country-bubble-info">
+          <span class="country-bubble-name">Cambodia</span>
+        </div>
+      </div>
+      <div class="country-bubble c-england">
+        <div class="country-flag-wrap">
+          <img src="https://flagcdn.com/w40/gb.png" alt="England" loading="lazy">
+        </div>
+        <div class="country-bubble-info">
+          <span class="country-bubble-name">England</span>
+        </div>
+      </div>
+
+      <div class="worldwide-main">
+        <div class="worldwide-badge">🌍 Worldwide Orders</div>
+        <div class="worldwide-counter" id="txCounterOnly">0</div>
+        <p class="worldwide-label">Successful Orders</p>
+        <p class="worldwide-sub" data-i18n="testi.sub">Order item, coin, dan akun Hay Day sudah diproses untuk pembeli dari berbagai negara.
+        </p>
+
+        <!-- Strip negara: hanya muncul di mobile -->
+        <div class="country-strip" id="countryStrip">
+          <div class="strip-chip">
+            <div class="strip-chip-flag"><img src="https://flagcdn.com/w40/in.png" alt="India" loading="lazy"></div>
+            India
+          </div>
+          <div class="strip-chip" style="animation-delay:.08s">
+            <div class="strip-chip-flag"><img src="https://flagcdn.com/w40/vn.png" alt="Vietnam" loading="lazy"></div>
+            Vietnam
+          </div>
+          <div class="strip-chip" style="animation-delay:.16s">
+            <div class="strip-chip-flag"><img src="https://flagcdn.com/w40/my.png" alt="Malaysia" loading="lazy"></div>
+            Malaysia
+          </div>
+          <div class="strip-chip" style="animation-delay:.24s">
+            <div class="strip-chip-flag"><img src="https://flagcdn.com/w40/th.png" alt="Thailand" loading="lazy"></div>
+            Thailand
+          </div>
+          <div class="strip-chip" style="animation-delay:.32s">
+            <div class="strip-chip-flag"><img src="https://flagcdn.com/w40/sg.png" alt="Singapore" loading="lazy"></div>
+            Singapore
+          </div>
+          <div class="strip-chip" style="animation-delay:.40s">
+            <div class="strip-chip-flag"><img src="https://flagcdn.com/w40/kh.png" alt="Cambodia" loading="lazy"></div>
+            Cambodia
+          </div>
+          <div class="strip-chip" style="animation-delay:.48s">
+            <div class="strip-chip-flag"><img src="https://flagcdn.com/w40/gb.png" alt="England" loading="lazy"></div>
+            England
+          </div>
+        </div>
+
+        <div class="trust-mini-row">
+          <span class="trust-mini">⚡ Fast Process</span>
+          <span class="trust-mini">✅ Trusted Seller</span>
+          <span class="trust-mini">🟢 Active Everyday</span>
+        </div>
+      </div>
+
+      <div class="ig-btn-wrap">
+        <a class="ig-worldwide-btn"
+          href="https://www.instagram.com/rafihayday?igsh=MWIyNDdpd2tuanJ5Yg%3D%3D&utm_source=qr" target="_blank" data-i18n="testi.igBtn">
+          📸 Lihat Bukti Order di Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP TUTORIAL MODERN -->
+  <div class="wa-tutorial-popup" id="waTutorialPopup" aria-hidden="true">
+    <div class="wa-popup-card" role="dialog" aria-modal="true" aria-labelledby="tutorialPopupTitle">
+      <div class="wa-popup-icon">👋</div>
+      <h3 id="tutorialPopupTitle" data-i18n="welcome.title">Selamat Datang di RAFI HAYDAY</h3>
+      <p data-i18n="welcome.desc">Sebelum mulai berbelanja, lihat tutorial singkat agar proses order lebih mudah.</p>
+
+      <div class="wa-popup-actions">
+        <button type="button" class="wa-popup-btn primary" onclick="goToTutorialFromPopup()">📖 <span data-i18n="welcome.btnTutorial">Lihat Tutorial</span></button>
+        <button type="button" class="wa-popup-btn secondary" onclick="closeTutorialPopup()">✅ <span data-i18n="welcome.btnUnderstand">Sudah Mengerti</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOMBOL FLOATING BANTUAN TUTORIAL -->
+  <button type="button" class="wa-floating-help" id="waFloatingHelp" onclick="openTutorialPopup()" data-i18n-aria="help.aria" aria-label="Buka tutorial">?</button>
+
+  <!-- Keranjang melayang (HP): tombol bulat di samping tombol "?" -->
+  <button type="button" class="cart-floating-btn" id="cartFloatingBtn" onclick="openCartModal()" aria-label="Keranjang">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 8h12l-1 12.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 7 20.5L6 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 8V6a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="cart-count-badge" id="cartCountBadge">0</span>
+    <span class="sr-only" data-i18n="cart.floatingLabel">Keranjang</span>
+  </button>
+
+  <!-- POPUP FORM TAMBAH KE KERANJANG -->
+  <div class="order-modal-overlay" id="orderModal">
+    <div class="order-modal">
+      <div class="order-modal-header">
+        <h3 data-i18n="common.addToCartTitle">Tambah ke Keranjang</h3>
+        <button type="button" class="order-close" onclick="closeOrderForm()">×</button>
+      </div>
+
+      <div class="order-modal-body">
+        <div class="selected-product-box">
+          <span data-i18n="order.selectedLabel">Produk dipilih:</span><br>
+          <strong id="selectedProductText">-</strong>
+        </div>
+
+        <form onsubmit="addOrderToCart(event)">
+          <input type="hidden" id="selectedProduct" />
+
+          <div class="order-field">
+            <label for="orderQty" data-i18n="order.qtyLabel">Jumlah Pesanan</label>
+            <input type="number" id="orderQty" placeholder="Contoh: 2" data-i18n-placeholder="order.qtyPlaceholder" min="1" required />
+          </div>
+
+          <button type="submit" class="order-submit-btn" data-i18n="common.addToCartBtnModal">Masukkan ke Keranjang</button>
+        </form>
+
+        <p class="order-small-note" data-i18n="order.smallNote">
+          Produk akan masuk ke keranjang dulu. Kamu bisa pilih produk lain, lalu checkout semua sekaligus lewat WhatsApp.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP ITEM UPGRADE (HARGA BERTINGKAT: BEM/SEM/LEM) -->
+  <div class="order-modal-overlay" id="bulkItemModal">
+    <div class="order-modal">
+      <div class="order-modal-header">
+        <h3 data-i18n="common.addToCartTitle">Tambah ke Keranjang</h3>
+        <button type="button" class="order-close" onclick="closeBulkItemForm()">×</button>
+      </div>
+
+      <div class="order-modal-body">
+        <div class="selected-product-box">
+          <span data-i18n="order.selectedLabel">Produk dipilih:</span><br>
+          <strong id="bulkItemProductText">-</strong>
+        </div>
+
+        <div class="tier-bubble-row" id="bulkItemTierBubbles"></div>
+
+        <form onsubmit="addBulkItemToCart(event)">
+          <div class="order-field">
+            <label for="bulkItemQty" data-i18n="bulk.qtyLabel">Jumlah Set</label>
+            <input type="number" id="bulkItemQty" placeholder="Contoh: 10" data-i18n-placeholder="bulk.qtyPlaceholder" min="1" required oninput="updateBulkItemPreview()" />
+          </div>
+
+          <div class="live-total-box">
+            <span data-i18n="common.total">Total</span>
+            <span id="bulkItemLiveTotal">Rp0</span>
+          </div>
+          <div class="live-total-savings" id="bulkItemSavings" style="display:none;"></div>
+
+          <button type="submit" class="order-submit-btn" style="margin-top:14px;" data-i18n="common.addToCartBtnModal">Masukkan ke Keranjang</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP BAHAN MULTI-ITEM (SUSU/GULA/LAUT/MADU/TAMBANG/ALAT) -->
+  <div class="order-modal-overlay" id="bahanMultiModal">
+    <div class="order-modal">
+      <div class="order-modal-header">
+        <h3 id="bahanMultiTitle">Pilih Item</h3>
+        <button type="button" class="order-close" onclick="closeBahanMultiForm()">×</button>
+      </div>
+
+      <div class="order-modal-body">
+        <div class="tier-info-box" id="bahanMultiInfo"></div>
+
+        <div id="bahanMultiRows"></div>
+
+        <div class="live-total-box">
+          <span data-i18n="common.total">Total</span>
+          <span id="bahanMultiLiveTotal">Rp0</span>
+        </div>
+
+        <button type="button" class="order-submit-btn" style="margin-top:14px;" onclick="addBahanMultiToCart(event)" data-i18n="common.addToCartBtnModal">Masukkan ke Keranjang</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP COIN HAYDAY (JUMLAH + JASA) -->
+  <div class="order-modal-overlay" id="coinModal">
+    <div class="order-modal">
+      <div class="order-modal-header">
+        <h3 id="coinModalTitle">Coin Hayday</h3>
+        <button type="button" class="order-close" onclick="closeCoinForm()">×</button>
+      </div>
+
+      <div class="order-modal-body">
+        <div class="order-field">
+          <label for="coinAmountSelect" data-i18n="coin.qtyLabel">Jumlah Coin</label>
+          <select id="coinAmountSelect" onchange="updateCoinPreview()"></select>
+        </div>
+
+        <label class="jasa-checkbox-row">
+          <input type="checkbox" id="coinJasaCheckbox" onchange="updateCoinPreview()" />
+          <span data-i18n="coin.jasaLabel">Pakai Jasa (dikerjakan admin)</span>
+        </label>
+
+        <div class="live-total-box">
+          <span data-i18n="common.total">Total</span>
+          <span id="coinLiveTotal">Rp0</span>
+        </div>
+
+        <button type="button" class="order-submit-btn" style="margin-top:14px;" onclick="addCoinToCart(event)" data-i18n="common.addToCartBtnModal">Masukkan ke Keranjang</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP REQUEST AKUN SESUAI BUDGET & SPEK -->
+  <div class="order-modal-overlay" id="akunCustomModal">
+    <div class="order-modal">
+      <div class="order-modal-header">
+        <h3 id="akunCustomTitle">Request Akun</h3>
+        <button type="button" class="order-close" onclick="closeAkunCustomForm()">×</button>
+      </div>
+
+      <div class="order-modal-body">
+        <div class="selected-product-box">
+          <span data-i18n="akun.categoryLabel">Kategori dipilih:</span><br>
+          <strong id="akunCustomProductText">-</strong>
+        </div>
+
+        <form onsubmit="submitAkunCustom(event)">
+          <div class="order-field">
+            <label for="akunCustomName" data-i18n="akun.nameLabel">Nama Kamu</label>
+            <input type="text" id="akunCustomName" placeholder="Contoh: Rafi" data-i18n-placeholder="common.namePlaceholder" required />
+          </div>
+
+          <div class="order-field">
+            <label for="akunCustomBudget" data-i18n="akun.budgetLabel">Budget Kamu (Rp)</label>
+            <input type="number" id="akunCustomBudget" placeholder="Contoh: 150000" data-i18n-placeholder="akun.budgetPlaceholder" min="0" required />
+          </div>
+
+          <div class="order-field">
+            <label for="akunCustomSpec" data-i18n="akun.specLabel">Spesifikasi yang Diinginkan</label>
+            <input type="text" id="akunCustomSpec" placeholder="Contoh: Level tinggi, gudang penuh, dekorasi lengkap" data-i18n-placeholder="akun.specPlaceholder" required />
+          </div>
+
+          <button type="submit" class="order-submit-btn" data-i18n="akun.submitBtn">Kirim Request ke Admin</button>
+        </form>
+
+        <p class="order-small-note" data-i18n="akun.note">
+          Request ini langsung dikirim ke WhatsApp admin, nanti dicarikan akun sesuai budget dan spek kamu.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP KERANJANG BELANJA -->
+  <div class="order-modal-overlay" id="cartModal">
+    <div class="order-modal cart-order-modal">
+      <div class="order-modal-header">
+        <h3>🛒 <span data-i18n="cart.title">Keranjang Belanja</span></h3>
+        <button type="button" class="order-close" onclick="closeCartModal()">×</button>
+      </div>
+
+      <div class="order-modal-body cart-modal-body">
+        <div class="cart-scroll-area" id="cartScrollArea">
+          <div id="cartItemsList"></div>
+        </div>
+
+        <div class="cart-checkout-footer">
+          <div class="cart-grand-total" id="cartGrandTotal" style="display:none;"></div>
+
+          <form onsubmit="sendCartToWhatsApp(event)">
+            <div class="order-field">
+              <label for="checkoutBuyerName" data-i18n="cart.buyerNameLabel">Nama Pembeli</label>
+              <input type="text" id="checkoutBuyerName" placeholder="Contoh: Rafi" data-i18n-placeholder="cart.buyerNamePlaceholder" required />
+            </div>
+
+            <button type="submit" class="order-submit-btn" data-i18n="cart.checkoutBtn">Checkout Semua via WhatsApp</button>
+          </form>
+
+          <p class="order-small-note" data-i18n="cart.smallNote">
+            Item keranjang otomatis dikirim ke WhatsApp admin.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM TAMBAH TESTIMONI (sebelumnya hilang dari HTML sehingga bikin error JS) -->
+  <div class="order-modal-overlay" id="testiModal">
+    <div class="order-modal">
+      <div class="order-modal-header">
+        <h3 data-i18n="testi.formTitle">Tulis Testimoni</h3>
+        <button type="button" class="order-close" onclick="closeTestiForm()">×</button>
+      </div>
+
+      <div class="order-modal-body">
+        <form onsubmit="submitTestimoni(event)">
+          <div class="order-field">
+            <label for="testiName" data-i18n="testi.nameLabel">Nama Kamu</label>
+            <input type="text" id="testiName" placeholder="Contoh: Rafi" data-i18n-placeholder="common.namePlaceholder" required />
+          </div>
+
+          <div class="order-field">
+            <label for="testiProduct" data-i18n="testi.productLabel">Produk yang Dibeli</label>
+            <input type="text" id="testiProduct" placeholder="Contoh: Coin Hayday Level 40+" data-i18n-placeholder="testi.productPlaceholder" required />
+          </div>
+
+          <div class="order-field">
+            <label data-i18n="testi.ratingLabel">Rating</label>
+            <div class="star-picker" id="testiStarPicker">
+              <span data-value="1">★</span>
+              <span data-value="2">★</span>
+              <span data-value="3">★</span>
+              <span data-value="4">★</span>
+              <span data-value="5">★</span>
+            </div>
+            <div class="star-picker-hint" data-i18n="testi.ratingHint">Klik bintang untuk kasih rating</div>
+            <input type="hidden" id="testiRating" value="0" />
+          </div>
+
+          <div class="order-field">
+            <label for="testiText" data-i18n="testi.textLabel">Testimoni Kamu</label>
+            <input type="text" id="testiText" placeholder="Ceritakan pengalaman belanja kamu" data-i18n-placeholder="testi.textPlaceholder" required />
+          </div>
+
+          <button type="submit" class="order-submit-btn" data-i18n="testi.submitBtn">Kirim Testimoni</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX GAMBAR PRODUK (sebelumnya hilang dari HTML sehingga bikin error JS) -->
+  <div class="lightbox-overlay" id="imageLightbox" onclick="if(event.target===this){closeImageLightbox();}">
+    <div class="lightbox-box">
+      <img id="lightboxImg" src="" alt="">
+      <div class="lightbox-caption">
+        <span id="lightboxCaption"></span>
+        <button type="button" class="lightbox-close" onclick="closeImageLightbox()">×</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p data-i18n="footer.text">© Jual item, coin, dan akun Hay Day dengan proses cepat, mudah, dan amanah. Klik WhatsApp untuk cek stok dan
+      langsung order..</p>
+  </footer>
+
+<div id="adminOverlay" aria-hidden="true">
+  <div class="admin-shell">
+    <div class="admin-topbar">
+      <div class="admin-topbar-title">
+        <span class="a-emoji">🌾</span>
+        <div>
+          <h2>RafiHayday Admin</h2>
+          <p>Kelola katalog toko langsung dari sini</p>
+        </div>
+      </div>
+      <button type="button" class="admin-close" id="adminCloseBtn" aria-label="Tutup">×</button>
+    </div>
+
+    <div id="adminStatus" class="admin-status"></div>
+
+    <div id="adminAuthSuccess" class="admin-auth-success" aria-hidden="true">
+      <div class="admin-auth-success-inner">
+        <div class="admin-faceid-orb" aria-hidden="true">
+          <div class="admin-faceid-glow"></div>
+          <div class="admin-faceid-ring"></div>
+          <div class="admin-faceid-lines"><span></span><span></span><span></span><span></span></div>
+          <div class="admin-faceid-check">✓</div>
+          <div class="admin-faceid-fail">×</div>
+        </div>
+        <h3 class="admin-auth-title">Akses Admin</h3>
+        <p class="admin-auth-sub" id="adminAuthSuccessText">Memverifikasi identitas…</p>
+      </div>
+    </div>
+
+    <div id="adminLoginPanel">
+      <div class="admin-login-icon">🔐</div>
+      <h3 style="text-align:center;margin:0 0 4px;font-size:19px;font-weight:800;">Admin Dashboard</h3>
+      <p class="admin-login-sub">Login dengan akun admin kamu untuk mengelola produk.</p>
+      <form id="adminLoginForm">
+        <div class="admin-field">
+          <label for="adminEmail">Email</label>
+          <input id="adminEmail" type="email" autocomplete="username" placeholder="admin@email.com" required>
+        </div>
+        <div class="admin-field password-field">
+          <label for="adminPassword">Password</label>
+          <input id="adminPassword" type="password" autocomplete="current-password" placeholder="••••••••" required>
+          <button type="button" class="admin-pw-toggle" id="adminPwToggle" aria-label="Tampilkan password">👁️</button>
+        </div>
+        <div class="admin-actions" style="margin-top:6px;">
+          <button class="admin-btn" id="adminLoginBtn" type="submit" style="width:100%;">
+            <span class="spin"></span><span class="btn-label">Login</span>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div id="adminDashboard">
+      <button type="button" class="admin-mobile-toggle" id="adminMobileToggle">
+        <span id="adminMobileToggleLabel">📦 Daftar Produk</span>
+        <span class="a-chev">▾</span>
+      </button>
+
+      <div class="admin-layout">
+        <aside class="admin-sidebar" id="adminSidebar">
+          <div class="admin-sidebar-head">
+            <div class="admin-search-wrap">
+              <span class="a-search-ic">🔎</span>
+              <input id="adminSearch" class="admin-search" type="search" placeholder="Cari nama produk...">
+            </div>
+            <div id="adminCategoryFilter" class="admin-filter-chips"></div>
+          </div>
+          <div id="adminProductList" class="admin-product-list"></div>
+          <div class="admin-sidebar-foot">
+            <div class="admin-actions" style="margin-bottom:8px;">
+              <button class="admin-btn secondary" id="adminSettingsBtn" type="button" style="width:100%;">⚙️ Pengaturan Angka Testimoni</button>
+            </div>
+            <div class="admin-actions">
+              <button class="admin-btn secondary" id="adminRefreshAllBtn" type="button">↻ Refresh</button>
+              <button class="admin-btn danger" id="adminLogoutBtn" type="button">Logout</button>
+            </div>
+          </div>
+        </aside>
+
+        <main class="admin-editor">
+          <div id="adminNoSelection" class="admin-empty">
+            <span class="a-empty-emoji">🛒</span>
+            Pilih produk di sebelah kiri untuk mulai mengedit.
+          </div>
+
+          <div id="adminSettingsPanel" class="admin-editor-card" style="display:none">
+            <h3 class="admin-section-title"><span class="a-sec-ic">⚙️</span>Pengaturan Angka Testimoni</h3>
+            <div class="admin-grid">
+              <div class="admin-field">
+                <label>Angka Counter "Total Transaksi"</label>
+                <input id="adminTxCounter" type="number" min="0" step="1" placeholder="Contoh: 9500">
+                <small style="display:block;margin-top:4px;color:#8a938c;font-weight:500;font-size:11px;">Ini angka yang muncul animasi naik (mis. "9.500+") di bagian Testimoni.</small>
+              </div>
+            </div>
+            <div class="admin-actions desktop-only" style="margin-top:14px;">
+              <button class="admin-btn" id="adminSettingsSaveBtn" type="button">
+                <span class="spin"></span><span class="btn-label">💾 Simpan Angka</span>
+              </button>
+              <button class="admin-btn secondary" id="adminSettingsReloadBtn" type="button">↻ Muat Ulang</button>
+            </div>
+          </div>
+
+          <form id="adminProductForm" class="admin-editor-card" style="display:none">
+            <input type="hidden" id="adminProductId"><input type="hidden" id="adminProductSlug"><input type="hidden" id="adminProductType">
+
+            <div class="admin-product-preview">
+              <div class="a-prev-img-wrap"><img id="adminPreviewImage" alt="Produk"></div>
+              <div style="min-width:0;flex:1;">
+                <div id="adminPreviewName" class="a-prev-name"></div>
+                <div id="adminPreviewMeta" class="a-prev-meta"></div>
+              </div>
+              <span id="adminUnsavedBadge"><span class="a-dot"></span>Belum disimpan</span>
+            </div>
+
+            <div class="admin-grid">
+              <div class="admin-field"><label>Nama Produk</label><input id="adminName" type="text" required></div>
+              <div class="admin-field"><label>Kategori</label>
+                <select id="adminCategory">
+                  <option value="item">Item Upgrade</option>
+                  <option value="bahanalat">Bahan & Alat</option>
+                  <option value="voucher">Voucher</option>
+                  <option value="coin">Coin</option>
+                  <option value="akun">Akun Hayday</option>
+                </select>
+              </div>
+              <div class="admin-field"><label>Harga Dasar</label><input id="adminBasePrice" type="number" min="0" step="1"></div>
+              <div class="admin-field"><label>Stok</label><input id="adminStock" type="number" min="0" step="1"></div>
+              <div class="admin-field"><label>Teks Harga di Kartu</label><input id="adminDisplayPrice" type="text" placeholder="Kosongkan = pakai Harga Dasar"><small style="display:block;margin-top:4px;color:#8a938c;font-weight:500;font-size:11px;">Boleh isi angka saja (mis. 2500) — "Rp" ditambahkan otomatis. Kosongkan untuk pakai Harga Dasar.</small></div>
+              <div class="admin-field"><label>Urutan Tampil</label><input id="adminSortOrder" type="number" step="1"></div>
+            </div>
+
+            <div class="admin-image-field">
+              <div class="admin-image-preview-box" id="adminImagePreviewBox">
+                <img id="adminImagePreviewThumb" alt="">
+                <span class="a-img-fallback">🖼️</span>
+              </div>
+              <div class="admin-field" style="margin-bottom:0;">
+                <label>URL Foto Produk</label>
+                <input id="adminImageUrl" type="url" placeholder="https://...">
+              </div>
+            </div>
+
+            <div class="admin-field"><label>Deskripsi</label><textarea id="adminDescription"></textarea></div>
+
+            <div class="admin-toggle-row">
+              <div>
+                <div class="a-toggle-label">Produk Aktif</div>
+                <div class="a-toggle-sub">Tampil di katalog publik saat dinyalakan.</div>
+              </div>
+              <label class="a-switch">
+                <input id="adminIsActive" type="checkbox">
+                <span class="a-switch-slider"></span>
+              </label>
+            </div>
+
+            <div id="adminTierSection" class="admin-extra" style="display:none">
+              <h3 class="admin-section-title"><span class="a-sec-ic">📶</span>Harga Bertingkat</h3>
+              <div id="adminTierEditor"></div>
+            </div>
+
+            <div id="adminOptionSection" class="admin-extra" style="display:none">
+              <h3 class="admin-section-title"><span class="a-sec-ic">🧺</span>Pilihan / Varian Bahan</h3>
+              <div id="adminOptionEditor"></div>
+            </div>
+
+            <div id="adminCoinSection" class="admin-extra" style="display:none">
+              <h3 class="admin-section-title"><span class="a-sec-ic">🪙</span>Konfigurasi Coin</h3>
+              <div class="admin-grid">
+                <div class="admin-field"><label>Kelipatan Coin</label><input id="adminCoinStep" type="number" min="1"></div>
+                <div class="admin-field"><label>Harga per Kelipatan</label><input id="adminCoinUnitPrice" type="number" min="0"></div>
+                <div class="admin-field"><label>Jasa per Kelipatan</label><input id="adminCoinJasa" type="number" min="0"></div>
+                <div class="admin-field"><label>Maksimum Coin</label><input id="adminCoinMax" type="number" min="1"></div>
+              </div>
+            </div>
+
+            <div class="admin-actions desktop-only">
+              <button class="admin-btn" id="adminSaveBtn" type="submit">
+                <span class="spin"></span><span class="btn-label">💾 Simpan Perubahan</span>
+              </button>
+              <button class="admin-btn secondary" id="adminReloadBtn" type="button">↻ Muat Ulang</button>
+            </div>
+          </form>
+        </main>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="adminConfirmOverlay">
+  <div class="admin-confirm-box">
+    <div class="a-confirm-ic">⚠️</div>
+    <h3 id="adminConfirmTitle">Perubahan belum disimpan</h3>
+    <p id="adminConfirmMsg">Kamu punya perubahan yang belum disimpan. Yakin mau keluar tanpa menyimpan?</p>
+    <div class="admin-confirm-actions">
+      <button class="admin-btn secondary" id="adminConfirmCancel" type="button">Batal</button>
+      <button class="admin-btn danger" id="adminConfirmOk" type="button">Ya, Lanjutkan</button>
+    </div>
+  </div>
+</div>
+
+<!-- sticky mobile action bar (mirrors Save/Reload for small screens) -->
+<div class="admin-stickybar hidden" id="adminStickyBar">
+  <button class="admin-btn secondary" id="adminReloadBtnMobile" type="button">↻ Muat Ulang</button>
+  <button class="admin-btn" id="adminSaveBtnMobile" type="button">
+    <span class="spin"></span><span class="btn-label">💾 Simpan</span>
+  </button>
+</div>
+
+  <script src="js/navigation.js"></script>
+  <script src="js/tutorial-popup.js"></script>
+  <script src="js/cart-core.js"></script>
+  <script src="js/order-forms.js"></script>
+  <script src="js/cart-checkout.js"></script>
+  <script src="js/lightbox.js"></script>
+  <script src="js/testimonials.js"></script>
+  <script src="js/worldwide-counter.js"></script>
+  <script src="js/tutorial-modal.js"></script>
+  <script src="js/kalkulator.js"></script>
+  <script src="js/routing.js"></script>
+  <script src="js/welcome-popup.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/product-i18n.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/admin-supabase.js"></script>
+  <script src="js/search-wishlist.js"></script>
+  <script src="js/promo-banner.js"></script>
+  <script src="js/ui-shell.js"></script>
+</body>
+
+</html>

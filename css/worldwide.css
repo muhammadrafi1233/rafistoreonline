@@ -1,0 +1,207 @@
+/* ==========================================================================
+   WORLDWIDE — bagian "Trusted by Farmers Worldwide": counter, bendera negara,
+   toast order baru, tombol Instagram
+   ========================================================================== */
+
+.worldwide-section {
+  position: relative;
+  max-width: 880px;
+  min-height: 520px;
+  margin: 24px auto 32px;
+  padding: 42px 24px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(247, 183, 51, 0.22), transparent 36%),
+    radial-gradient(circle at bottom right, rgba(47, 143, 70, 0.16), transparent 40%),
+    var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-md);
+}
+.worldwide-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(47, 143, 70, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(47, 143, 70, 0.05) 1px, transparent 1px);
+  background-size: 34px 34px;
+  pointer-events: none;
+}
+.worldwide-main {
+  position: relative;
+  z-index: 2;
+  max-width: 440px;
+  margin: 66px auto 30px;
+  padding: 34px 24px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+.worldwide-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding: 8px 16px;
+  border-radius: var(--r-pill);
+  background: var(--green-100);
+  color: var(--green-800);
+  font-size: 13px;
+  font-weight: 700;
+}
+.worldwide-counter {
+  margin: 10px 0;
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -2px;
+  color: var(--yellow-600);
+  animation: counterPulse 2.2s ease-in-out infinite;
+}
+.worldwide-label { margin: 0 0 12px; font-size: 17px; font-weight: 700; color: var(--green-800); }
+.worldwide-sub { margin: 0; font-size: 14px; line-height: 1.6; color: var(--ink-3); }
+.trust-mini-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.trust-mini { padding: 8px 12px; border-radius: var(--r-pill); background: var(--green-50); color: var(--green-800); font-size: 12px; font-weight: 700; }
+
+/* ---------- Bendera negara melayang (desktop) ---------- */
+.country-bubble {
+  position: absolute;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 15px 8px 9px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  box-shadow: var(--shadow-sm);
+  color: var(--ink);
+  font-weight: 600;
+  pointer-events: none;
+  user-select: none;
+}
+.country-flag-wrap { width: 34px; height: 34px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 50%; background: var(--surface-2); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16); }
+.country-flag-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.country-bubble-info { display: flex; flex-direction: column; line-height: 1.2; }
+.country-bubble-name { font-size: 13px; font-weight: 700; color: var(--ink); }
+.country-bubble-orders { font-size: 10.5px; font-weight: 600; color: var(--ink-3); }
+.country-bubble::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border: 2px solid rgba(47, 143, 70, 0.3);
+  border-radius: var(--r-pill);
+  opacity: 0;
+  animation: pingRing 3s ease-out infinite;
+}
+@keyframes floatA { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-14px) rotate(1.5deg); } }
+@keyframes floatB { 0%, 100% { transform: translateY(0) rotate(1deg); } 50% { transform: translateY(-11px) rotate(-1.5deg); } }
+@keyframes floatC { 0%, 100% { transform: translateY(-4px) rotate(0.5deg); } 50% { transform: translateY(9px) rotate(-1deg); } }
+@keyframes floatD { 0%, 100% { transform: translateY(0) scale(1); } 33% { transform: translateY(-9px) scale(1.03); } 66% { transform: translateY(5px) scale(0.98); } }
+@keyframes floatE { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(8px, -13px); } }
+@keyframes floatF { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-8px, -10px); } }
+@keyframes floatG { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-11px); } }
+@keyframes pingRing { 0% { transform: scale(0.92); opacity: 0.7; } 70% { transform: scale(1.12); opacity: 0; } 100% { transform: scale(1.12); opacity: 0; } }
+.c-india { top: 54px; left: 46px; animation: floatA 4.8s ease-in-out 0.1s infinite; }
+.c-vietnam { top: 88px; right: 52px; animation: floatB 5.2s ease-in-out 0.7s infinite; }
+.c-malaysia { top: 230px; left: 36px; animation: floatC 5.8s ease-in-out 1.1s infinite; }
+.c-thailand { top: 250px; right: 38px; animation: floatD 5.4s ease-in-out 0.4s infinite; }
+.c-singapore { bottom: 86px; left: 90px; animation: floatE 4.6s ease-in-out 1.5s infinite; }
+.c-cambodia { bottom: 96px; right: 74px; animation: floatF 5s ease-in-out 0.9s infinite; }
+.c-england { bottom: 34px; left: 50%; animation: floatG 5.6s ease-in-out 1.8s infinite; }
+.c-india::after { animation-delay: 0s; }
+.c-vietnam::after { animation-delay: 0.5s; }
+.c-malaysia::after { animation-delay: 1s; }
+.c-thailand::after { animation-delay: 1.5s; }
+.c-singapore::after { animation-delay: 2s; }
+.c-cambodia::after { animation-delay: 2.5s; }
+.c-england::after { animation-delay: 3s; }
+
+/* ---------- Toast order baru ---------- */
+.live-order-toast {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 24px;
+  padding: 10px 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--surface);
+  border: 1px solid var(--green-100);
+  border-radius: var(--r-pill);
+  box-shadow: var(--shadow-md);
+  color: var(--green-800);
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  animation: toastPop 2.8s ease-in-out infinite;
+}
+@keyframes counterPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+@keyframes toastPop { 0%, 100% { opacity: 0.82; transform: translateX(-50%) translateY(0); } 50% { opacity: 1; transform: translateX(-50%) translateY(5px); } }
+
+/* ---------- Tombol Instagram ---------- */
+.ig-btn-wrap { position: relative; z-index: 2; text-align: center; }
+.ig-worldwide-btn {
+  position: relative;
+  z-index: 2;
+  min-height: 50px;
+  margin: 6px auto 0;
+  padding: 0 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: var(--r-pill);
+  background: linear-gradient(135deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+  box-shadow: 0 12px 26px rgba(214, 41, 118, 0.3);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.25s ease;
+}
+.ig-worldwide-btn:hover { transform: translateY(-3px); }
+
+/* ---------- Strip negara (HP) ---------- */
+.country-strip { display: none; }
+.strip-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+  padding: 7px 14px 7px 8px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  box-shadow: var(--shadow-xs);
+  color: var(--ink);
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  animation: chipPop 0.4s ease both;
+}
+.strip-chip-flag { width: 26px; height: 26px; flex-shrink: 0; overflow: hidden; border-radius: 50%; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15); }
+.strip-chip-flag img { width: 100%; height: 100%; object-fit: cover; }
+@keyframes chipPop { from { opacity: 0; transform: scale(0.88) translateY(4px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 768px) {
+  .worldwide-section { min-height: auto; margin-top: 12px; padding: 22px 14px 20px; border-radius: var(--r-lg); }
+  .country-bubble { display: none !important; }
+  .worldwide-main { margin: 52px auto 14px; padding: 24px 18px; border-radius: var(--r-lg); }
+  .worldwide-counter { font-size: 54px; }
+  .worldwide-label { font-size: 15px; }
+  .worldwide-sub { font-size: 13px; }
+  .trust-mini-row { gap: 6px; margin-top: 14px; }
+  .trust-mini { padding: 6px 10px; font-size: 11px; }
+  .live-order-toast { top: 16px; max-width: calc(100% - 28px); padding: 9px 14px; font-size: 12px; }
+  .ig-worldwide-btn { padding: 0 22px; font-size: 14px; }
+  .country-strip { display: flex; gap: 8px; margin: 12px 0 16px; padding: 12px 4px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .country-strip::-webkit-scrollbar { display: none; }
+}
+@media (max-width: 420px) {
+  .worldwide-counter { font-size: 44px; }
+}

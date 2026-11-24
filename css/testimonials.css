@@ -1,0 +1,151 @@
+/* ==========================================================================
+   TESTIMONI — CTA, kartu testimoni, statistik & rating, picker bintang
+   ========================================================================== */
+
+/* ---------- CTA di bawah katalog ---------- */
+.testi-cta {
+  margin-top: 28px;
+  padding: 24px 18px;
+  background: var(--green-50);
+  border: 1px solid var(--green-100);
+  border-radius: var(--r-lg);
+  text-align: center;
+}
+.testi-cta p { margin: 0 0 14px; font-size: 14.5px; color: var(--ink-2); }
+.testi-cta a {
+  min-height: 48px;
+  padding: 0 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: var(--r-pill);
+  background: var(--primary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.testi-cta a:hover { background: var(--primary-hover); transform: translateY(-2px); }
+
+/* ---------- CTA bawah tutorial ---------- */
+.testi-bottom-cta {
+  margin-top: 28px;
+  padding: 28px 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+.testi-bottom-cta h3 { margin: 0 0 8px; font-size: 19px; font-weight: 700; color: var(--ink); }
+.testi-bottom-cta p { margin: 0 0 18px; font-size: 14px; color: var(--ink-3); }
+.testi-bottom-cta .cta-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+.cta-btn {
+  min-height: 48px;
+  padding: 0 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: var(--r-pill);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.cta-btn:hover { transform: translateY(-2px); }
+.cta-btn.primary { background: var(--primary); color: #fff; }
+.cta-btn.primary:hover { background: var(--primary-hover); }
+.cta-btn.secondary { background: var(--accent); color: var(--on-accent); }
+.cta-btn.secondary:hover { background: var(--accent-hover); }
+
+/* ---------- Statistik & rating ---------- */
+.stat-card {
+  position: relative;
+  padding: 22px 18px 18px;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-xs);
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.stat-icon { margin-bottom: 10px; font-size: 30px; line-height: 1; }
+.stat-value { margin-bottom: 4px; font-size: 38px; font-weight: 800; line-height: 1; letter-spacing: -1px; }
+.stat-label { font-size: 13px; font-weight: 600; color: var(--ink-3); }
+.stat-sublabel { margin-top: 4px; font-size: 11px; color: var(--ink-3); }
+.stat-stars { display: block; margin-bottom: 4px; font-size: 18px; letter-spacing: 2px; color: var(--accent); }
+.star-breakdown { margin-bottom: 26px; padding: 22px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow-xs); }
+.sbar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.sbar-label { width: 24px; flex-shrink: 0; font-size: 13px; color: var(--ink-3); text-align: right; }
+.sbar-star { flex-shrink: 0; font-size: 13px; color: var(--accent); }
+.sbar-track { flex: 1; height: 8px; overflow: hidden; background: var(--surface-2); border-radius: 99px; }
+.sbar-fill { width: 0; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--accent), var(--yellow-300)); transition: width 1.2s var(--ease); }
+.sbar-pct { width: 34px; flex-shrink: 0; font-size: 12px; color: var(--ink-3); text-align: right; }
+
+/* ---------- Grid & kartu testimoni ---------- */
+.testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 18px; margin-bottom: 20px; }
+.testi-card {
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-xs);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.testi-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.testi-add-card {
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--yellow-50);
+  border: 1.5px dashed var(--yellow-500);
+  color: var(--green-800);
+  text-align: center;
+  cursor: pointer;
+}
+.testi-add-card:hover { background: var(--yellow-100); }
+.testi-add-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 26px;
+  font-weight: 700;
+}
+.testi-add-card p { margin: 0; font-size: 14px; font-weight: 700; }
+.testi-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.testi-avatar { width: 46px; height: 46px; min-width: 46px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: #fff; font-size: 17px; font-weight: 700; }
+.testi-name { font-size: 15px; font-weight: 700; line-height: 1.3; color: var(--ink); }
+.testi-name small { display: block; margin-top: 1px; font-size: 12px; font-weight: 400; color: var(--ink-3); }
+.testi-stars { margin-bottom: 8px; font-size: 15px; letter-spacing: 1px; color: var(--accent); }
+.testi-text { margin: 0 0 12px; font-size: 14px; line-height: 1.6; color: var(--ink-2); }
+.testi-tag { display: inline-block; padding: 5px 12px; border-radius: var(--r-pill); background: var(--green-100); color: var(--green-800); font-size: 12px; font-weight: 700; }
+
+/* ---------- Picker bintang (form testimoni) ---------- */
+.star-picker { display: flex; gap: 4px; font-size: 36px; line-height: 1; user-select: none; }
+.star-picker span { padding: 2px 3px; color: var(--surface-3); cursor: pointer; transition: color 0.15s ease, transform 0.15s ease; }
+.star-picker span.selected { color: var(--accent); }
+.star-picker span:hover { transform: scale(1.15); }
+.star-picker-hint { margin-top: 4px; font-size: 12px; color: var(--ink-3); }
+
+@media (max-width: 768px) {
+  .testi-grid { grid-template-columns: 1fr; gap: 12px; }
+  .testi-bottom-cta .cta-row { flex-direction: column; }
+  .cta-btn { width: 100%; }
+  .stat-card { padding: 16px 12px 14px; }
+  .stat-value { font-size: 28px; }
+  .stat-icon { font-size: 22px; margin-bottom: 6px; }
+  .stat-label { font-size: 11.5px; }
+  .star-breakdown { padding: 16px 14px; }
+}

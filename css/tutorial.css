@@ -1,0 +1,274 @@
+/* ==========================================================================
+   TUTORIAL — kartu pilihan tutorial & modal tutorial (video + langkah)
+   ========================================================================== */
+
+/* ---------- Kartu pilihan ---------- */
+.tut-picker-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 760px;
+  margin: 0 auto 28px;
+}
+.tut-picker-bubble {
+  position: relative;
+  padding: 30px 24px 26px;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.tut-picker-bubble:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+.tut-picker-bubble:active { transform: scale(0.98); }
+.tut-picker-bubble:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.tut-bubble-upgrade:hover { border-color: var(--green-200); }
+.tut-bubble-coin:hover { border-color: var(--yellow-300); }
+/* efek lama (glow & partikel) dimatikan supaya tampilan bersih */
+.tut-picker-glow, .tut-picker-particles { display: none; }
+
+.tut-picker-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 16px;
+  display: grid;
+  place-items: center;
+  border-radius: 24px;
+  font-size: 38px;
+  line-height: 1;
+}
+.tut-picker-icon .rh-coin { width: 44px; height: 44px; }
+.tut-bubble-upgrade .tut-picker-icon { background: var(--green-100); }
+.tut-bubble-coin .tut-picker-icon { background: var(--yellow-100); }
+.tut-picker-title { margin: 0 0 6px; font-size: 20px; font-weight: 700; line-height: 1.25; letter-spacing: -0.3px; color: var(--ink); }
+.tut-picker-sub { margin: 0 0 18px; font-size: 13px; color: var(--ink-3); }
+.tut-picker-badge {
+  min-height: 40px;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: var(--r-pill);
+  font-size: 13px;
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.tut-bubble-upgrade .tut-picker-badge { background: var(--primary); color: #fff; }
+.tut-bubble-coin .tut-picker-badge { background: var(--accent); color: var(--on-accent); }
+.tut-picker-bubble:hover .tut-picker-badge { transform: scale(1.05); }
+
+@media (max-width: 600px) {
+  .tut-picker-grid { grid-template-columns: 1fr; gap: 14px; max-width: 420px; }
+  .tut-picker-bubble {
+    padding: 18px;
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    grid-template-areas: 'icon title' 'icon sub' 'icon badge';
+    column-gap: 16px;
+    align-items: center;
+    text-align: left;
+  }
+  .tut-picker-icon { grid-area: icon; width: 64px; height: 64px; margin: 0; font-size: 32px; border-radius: 20px; }
+  .tut-picker-icon .rh-coin { width: 38px; height: 38px; }
+  .tut-picker-title { grid-area: title; margin: 0; font-size: 17px; }
+  .tut-picker-sub { grid-area: sub; margin: 2px 0 8px; font-size: 12.5px; }
+  .tut-picker-badge { grid-area: badge; justify-self: start; min-height: 36px; padding: 0 14px; font-size: 12.5px; }
+}
+
+/* ---------- Modal tutorial ---------- */
+.tut-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(14, 28, 19, 0.55);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.tut-modal-overlay.open { opacity: 1; visibility: visible; pointer-events: auto; }
+.tut-modal-box {
+  width: min(100%, 480px);
+  max-height: 90vh;
+  max-height: 90dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--surface);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-lg);
+  transform: scale(0.92) translateY(20px);
+  transition: transform 0.4s var(--ease);
+}
+.tut-modal-overlay.open .tut-modal-box { transform: none; }
+.tut-modal-header { position: relative; display: flex; align-items: center; gap: 14px; padding: 20px 68px 18px 20px; }
+.tut-modal-header.upgrade-header { background: linear-gradient(135deg, var(--green-700), var(--green-500)); }
+.tut-modal-header.coin-header { background: linear-gradient(135deg, var(--yellow-500), var(--yellow-300)); }
+.tut-modal-icon-wrap {
+  width: 54px;
+  height: 54px;
+  min-width: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.25);
+  font-size: 28px;
+}
+.tut-modal-icon-wrap .rh-coin { width: 34px; height: 34px; }
+.tut-modal-header-text h3 { margin: 0 0 3px; font-size: 19px; font-weight: 700; line-height: 1.2; color: #fff; }
+.tut-modal-header-text p { margin: 0; font-size: 13px; color: rgba(255, 255, 255, 0.88); }
+.tut-modal-header.coin-header .tut-modal-header-text h3 { color: #3a2200; }
+.tut-modal-header.coin-header .tut-modal-header-text p { color: rgba(58, 34, 0, 0.78); }
+.tut-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: var(--tap);
+  height: var(--tap);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.tut-modal-close:hover { background: rgba(255, 255, 255, 0.42); }
+.tut-modal-header.coin-header .tut-modal-close { background: rgba(0, 0, 0, 0.1); color: #3a2200; }
+
+.tut-modal-body { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
+.tut-modal-tabs {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  gap: 4px;
+  margin: 14px 16px 0;
+  padding: 4px;
+  background: var(--surface-2);
+  border-radius: var(--r-pill);
+}
+.tut-tab {
+  flex: 1;
+  min-height: 40px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: var(--ink-3);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+.tut-tab:hover { color: var(--ink); }
+.tut-tab.active { background: var(--surface); color: var(--green-800); font-weight: 700; box-shadow: var(--shadow-xs); }
+.tut-panel { flex: 1; padding: 16px; }
+
+.tut-modal-video-wrap {
+  position: relative;
+  width: 100%;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, var(--green-900), #1d4a2c);
+  border-radius: var(--r-md);
+  cursor: pointer;
+}
+.tut-modal-video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.tut-modal-video-placeholder { width: 100%; height: 100%; padding: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; }
+.tut-modal-play-btn {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-size: 24px;
+  transition: 0.2s ease;
+}
+.tut-modal-video-placeholder:hover .tut-modal-play-btn { background: rgba(255, 255, 255, 0.3); transform: scale(1.08); }
+.tut-modal-video-placeholder span { font-size: 13px; line-height: 1.4; color: rgba(255, 255, 255, 0.88); }
+.tut-modal-video-note { margin: 0; font-size: 12px; line-height: 1.5; color: var(--ink-3); text-align: center; }
+
+.tut-modal-steps { padding: 2px 0; }
+.tut-modal-step-item { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.tut-modal-step-item:last-child { border-bottom: 0; }
+.tut-modal-step-num {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+.upgrade-step .tut-modal-step-num { background: var(--primary); }
+.coin-step .tut-modal-step-num { background: var(--accent); color: var(--on-accent); }
+.tut-modal-step-content strong { display: block; margin-bottom: 3px; font-size: 15px; line-height: 1.3; color: var(--ink); }
+.tut-modal-step-content span { font-size: 13px; line-height: 1.55; color: var(--ink-3); }
+.tut-modal-step-content .tut-modal-step-emoji { display: block; margin-bottom: 2px; font-size: 20px; line-height: 1; }
+.tut-modal-footer { padding: 14px 20px 20px; border-top: 1px solid var(--line); text-align: center; }
+.tut-modal-wa-btn {
+  min-height: 48px;
+  padding: 0 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: var(--r-pill);
+  background: var(--primary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.tut-modal-wa-btn:hover { background: var(--primary-hover); transform: translateY(-2px); }
+
+/* sisa gaya carousel lama (dipakai JS lama, elemennya sudah tidak ada) */
+.tut-dot { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; background: var(--line-strong); cursor: pointer; transition: 0.2s ease; }
+.tut-dot.active { width: 22px; border-radius: 99px; background: var(--primary); }
+
+@media (max-width: 768px) {
+  .tut-modal-overlay { align-items: flex-end; padding: 0; }
+  .tut-modal-box {
+    width: 100%;
+    max-height: 92vh;
+    max-height: 92dvh;
+    border-radius: var(--r-xl) var(--r-xl) 0 0;
+    transform: translateY(100%);
+    transition: transform 0.4s var(--ease);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .tut-modal-overlay.open .tut-modal-box { transform: none; }
+  .tut-modal-header { padding: 16px 64px 16px 16px; }
+  .tut-modal-header-text h3 { font-size: 17px; }
+  .tut-modal-footer { padding: 12px 16px 16px; }
+}
